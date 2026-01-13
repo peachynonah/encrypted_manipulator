@@ -9,7 +9,9 @@ Develop stage: 1. P controller 2. PD controller 3. PD+G controller
 
 # P controller
 P controller of 2 link manipulator requires multiplication of K gain (2d vector) and position error (2d vector).
+
 Thus, modify scalar encryption method to vector encryption method is required.
+
 Next, multiplication between enceypted vector is required.
 
 **Currently on this stage.**
