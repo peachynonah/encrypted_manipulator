@@ -16,4 +16,4 @@ Next, multiplication between enceypted vector is required.
 
 **Currently on this stage.**
 
-test: encrypt ee_pos = (x,y) position, p_gain = (constant, constant) and multiply encrypted data. 
+test: encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, constant) and multiply encrypted data. 
