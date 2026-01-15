@@ -5,12 +5,31 @@ Please check README.md.back, or attached github link for former information of e
 # Overview
 Code for encrypted control of two link robot manipulator.
 
+# Encrypted manipulator 개발 계획
+
+## Original code Overview
+1. (System node) turtle sim의 position x, y를 각각 encrypt (scalar)
+2. Enc(x), Enc(y)를 controller로 전송
+3. (Controller node) encrypted scalar 간의 addition, multiplication Enc(x) + Enc(y) , Enc(x) * Enc(y)를 수행
+4. 결과값을 system node로 전송
+5. system node에서 decrypt
+
 Develop stage: 1. P controller 2. PD controller 3. PD+G controller
 
-# P controller
-P controller of 2 link manipulator requires multiplication of K gain (2d vector) and position error (2d vector).
+Original code를 확장해서, two link manipulator에 P controller부터 적용해보고자 함.
 
-Thus, modify scalar encryption method to vector encryption method is required.
+## Encrypted manipulator with P controller flow overview
+1. (System node) **two link manipulator**의 joint position **vector** (q1,q2), P gain **vector** (k1,k2)를 각각 encrypt
+2. Enc([q1 q2]), Enc([k1 k2])를 controller로 전송
+3. (Controller node) **encrypted vector간의 multiplication** Enc([k1 k2])^T * Enc(q1 q2)를 수행
+4. 결과값을 system node로 전송
+5. system node에서 decrypt
+Develop stage: 1. P controller 2. PD controller 3. PD+G controller
+
+
+# P controller development sequences
+
+1. scalar encryption $\to$ vector encryption 
 
 Next, multiplication between enceypted vector is required.
 
