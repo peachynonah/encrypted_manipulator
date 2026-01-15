@@ -51,7 +51,6 @@ Original code $\to$ program to develop
 **완료**
 
 A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, constant) and multiply encrypted data. 
-\\
 
 **Work in Progress**
 
