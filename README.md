@@ -21,7 +21,7 @@ Original code를 확장해서, two link manipulator에 P controller부터 적용
 
 1. (System node) **two link manipulator**의 joint position **vector** (q1,q2), P gain **vector** (k1,k2)를 각각 encrypt
 2. Enc([q1 q2]), Enc([k1 k2])를 controller로 전송
-3. (Controller node) **encrypted vector간의 multiplication** Enc([k1 k2])^T * Enc(q1 q2)를 수행
+3. (Controller node) **encrypted vector간의 multiplication** Enc([k1 k2]) * Enc(q1 q2) (element-wise)를 수행
 4. 결과값을 system node로 전송
 5. system node에서 decrypt
 Develop stage: 1. P controller 2. PD controller 3. PD+G controller
@@ -52,3 +52,9 @@ A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, const
 **Work in Progress**
 
 A-2. 위 데이터를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함.
+
+**논의사항**
+- Plaintext * EncryptedData 가 OpenFHE의 BGV Scheme에서 가능한지?
+- 가능하다면, Plaintext * EncryptedData $\neq$ 아무 정수 * EncryptedData인지?
+  - 즉 만약 공격자가 controller를 탈취 후 EncryptedData만 받아와서 아무 정수를 곱한 입력을 출력한다고 하면, 가능한 시나리오인지?  
+
