@@ -7,7 +7,7 @@ Code for encrypted control of two link robot manipulator.
 
 # Encrypted manipulator 개발 계획
 
-## Original code Overview
+## Original code verview
 1. (System node) turtle sim의 position x, y를 각각 encrypt (scalar)
 2. Enc(x), Enc(y)를 controller로 전송
 3. (Controller node) encrypted scalar 간의 addition, multiplication Enc(x) + Enc(y) , Enc(x) * Enc(y)를 수행
