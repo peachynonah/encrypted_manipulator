@@ -28,8 +28,13 @@ Develop stage: 1. P controller 2. PD controller 3. PD+G controller
 
 
 # P controller development sequences
+1. Scalar encryption $\to$ vector encryption 
+2. (system $\to$ controller) Encrypted scalar 값 전송 $\to$ encrypted vector 값 전송 
+3. Encrypted scalar multiplication $\to$ Encrypted vector multiplication
+4. (controller $\to$ system) Encrypted scalar 값 전송 $\to$ encrypted vector 값 전송
+5. system node에서 decrypt하는 부분이 위 과정과 호환되도록 수정
 
-1. scalar encryption $\to$ vector encryption 
+
 
 Next, multiplication between enceypted vector is required.
 
