@@ -107,12 +107,21 @@ private:
       encryption_start_ = std::chrono::high_resolution_clock::now();
       std::vector<int64_t> x_coord = {static_cast<int64_t>(msg->x * SCALE_XY_)};
       std::vector<int64_t> y_coord = {static_cast<int64_t>(msg->y * SCALE_XY_)};
+      // hcpyon_vector version
+      std::vector<int64_t> x_y_coords = {static_cast<int64_t>(msg->x * SCALE_XY_), static_cast<int64_t>(msg->y * SCALE_XY_)};
+      std::vector<int64_t> P_gains = {static_cast<int64_t>(0.5 * SCALE_XY_), static_cast<int64_t>(0.5 * SCALE_XY_)};
 
       auto plaintext_x = cc->MakePackedPlaintext(x_coord);
       auto plaintext_y = cc->MakePackedPlaintext(y_coord);
+      //hcpyon_ vector version
+      auto plaintext_xy = cc->MakePackedPlaintext(x_y_coords);
+      auto plaintext_Pgains = cc->MakePackedPlaintext(P_gains);
 
       auto ciphertext_x = cc->Encrypt(kp.publicKey, plaintext_x);
       auto ciphertext_y = cc->Encrypt(kp.publicKey, plaintext_y);
+      //hcpyon_vector version
+      auto ciphertext_xy = cc->Encrypt(kp.publicKey, plaintext_xy);
+      auto ciphertext_Pgains = cc->Encrypt(kp.publicKey, plaintext_Pgains);
 
       auto encryption_end = std::chrono::high_resolution_clock::now();
       auto encryption_time = std::chrono::duration_cast<std::chrono::microseconds>(
@@ -121,14 +130,27 @@ private:
       // 직렬화 (바이트스트림으로 바로 변환)
       serialization_start_ = std::chrono::high_resolution_clock::now();
       std::stringstream ss_x, ss_y;
+      //hcpyon_vector version
+      std::stringstream ss_xy, ss_Pgains;
+      
       Serial::Serialize(ciphertext_x, ss_x, SerType::BINARY);
       Serial::Serialize(ciphertext_y, ss_y, SerType::BINARY);
+      //hcpyon_vector version
+      Serial::Serialize(ciphertext_xy, ss_xy, SerType::BINARY);
+      Serial::Serialize(ciphertext_Pgains, ss_Pgains, SerType::BINARY);
+
 
       // stringstream → vector<uint8_t> 직접 변환
       std::string x_str = ss_x.str();
       std::string y_str = ss_y.str();
       std::vector<uint8_t> x_data(x_str.begin(), x_str.end());
       std::vector<uint8_t> y_data(y_str.begin(), y_str.end());
+      //hcpyon_vector version
+      std::string xy_str = ss_xy.str();
+      std::string Pgains_str = ss_Pgains.str();
+      std::vector<uint8_t> xy_data(xy_str.begin(), xy_str.end());
+      std::vector<uint8_t> Pgains_data(Pgains_str.begin(), Pgains_str.end());
+      
 
       auto serialization_end = std::chrono::high_resolution_clock::now();
       auto serialization_time = std::chrono::duration_cast<std::chrono::microseconds>(
@@ -143,6 +165,18 @@ private:
            << "데이터 크기(x,y): " << x_data.size() << " " << y_data.size() << " bytes\n"
            << "----------------------------------------";
       RCLCPP_INFO(this->get_logger(), "%s", info.str().c_str());
+
+      //hcpyon_vector version
+      std::cout << "\n========== Check if modified data is working lol FUCK THE CODE BRO ==========\n"
+           << "원본 데이터: x=" << std::fixed << std::setprecision(3) << original_x_
+           << ", y=" << original_y_ << " (결과:  P gains * (x,y): " << P_gains[0] * x_y_coords[0] + P_gains[1] * x_y_coords[1] << ")\n"
+           << "암호화 시간: " << encryption_time << " ms\n"
+           << "직렬화 시간: " << serialization_time << " ms\n"
+           << "데이터 크기(x,y): " << x_data.size() << " " << y_data.size() << " bytes\n" 
+           << "----------------------------------------" << std::endl;
+      // RCLCPP_INFO(this->get_logger(), "%s", info.str().c_str());
+
+
 
       // X 좌표 전송
       auto msg_x = enc_turtle_cpp::msg::EncryptedData();
