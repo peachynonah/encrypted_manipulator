@@ -57,4 +57,4 @@ A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, const
 A-2. 위에거를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함.
 
 
-## ~~ 두쫀쿠 먹고 싶다~~
+~~두쫀쿠 먹고 싶다~~
