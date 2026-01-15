@@ -44,7 +44,7 @@ Original code $\to$ program to develop
 
 - turtlesim model 관련 부분 함수, 변수 파악
 - two link manipulator input / output data type 확인 및 암호화 가능하도록 변경
-- model 정보를 모듈화해서 encryption code와 파일을 분리하는 것이 코드 가독성과 개발 편의를 위해 필요 (ㄹㅇㅋㅋㅠ방수총하다가힘들었음)
+- model 정보를 모듈화해서 encryption code와 파일을 분리하는 것이 코드 가독성과 개발 편의를 위해 필요
 
 
 ### Current status
@@ -54,7 +54,4 @@ A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, const
 
 **Work in Progress**
 
-A-2. 위에거를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함.
-
-
-~~두쫀쿠 먹고 싶다~~
+A-2. 위 데이터를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함.
