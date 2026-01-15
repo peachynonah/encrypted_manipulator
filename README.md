@@ -49,7 +49,10 @@ Original code $\to$ program to develop
 
 ### Current status
 **완료**
+
 A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, constant) and multiply encrypted data. 
+\\
 
 **Work in Progress**
+
 A-2. 위에거를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함...
