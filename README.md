@@ -27,17 +27,26 @@ Original code를 확장해서, two link manipulator에 P controller부터 적용
 Develop stage: 1. P controller 2. PD controller 3. PD+G controller
 
 
-# P controller development sequences
+## P controller development sequences
+
+### A. Implement encrypted multiplication 
 1. Scalar encryption $\to$ vector encryption 
 2. (system $\to$ controller) Encrypted scalar 값 전송 $\to$ encrypted vector 값 전송 
 3. Encrypted scalar multiplication $\to$ Encrypted vector multiplication
 4. (controller $\to$ system) Encrypted scalar 값 전송 $\to$ encrypted vector 값 전송
 5. system node에서 decrypt하는 부분이 위 과정과 호환되도록 수정
 
+### B. Replace turtlesim with two link manipulator
+(Rough guideline) 
+
+- turtlesim model 관련 부분 함수, 변수 파악
+- two link manipulator input / output data type 확인 및 암호화 가능하도록 변경
+- model 정보를 모듈화해서 encryption code와 파일을 분리하는 것이 혼란을 막기 위해서 좋아보임 (ㄹㅇㅋㅋㅠ방수총하다가힘들었음)
 
 
-Next, multiplication between enceypted vector is required.
+### Current status
+**완료**
+A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, constant) and multiply encrypted data. 
 
-**Currently on this stage.**
-
-test: encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, constant) and multiply encrypted data. 
+**Work in Progress**
+A-2. 위에거를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함...
