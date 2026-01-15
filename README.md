@@ -14,7 +14,7 @@ Code for encrypted control of two link robot manipulator.
 4. 결과값을 system node로 전송
 5. system node에서 decrypt
 
-Develop stage: 1. P controller 2. PD controller 3. PD+G controller
+개발 순서: P controller $\to$ PD controller $\to$ PD+G controller
 
 Original code를 확장해서, two link manipulator에 P controller부터 적용해보고자 함.
 
