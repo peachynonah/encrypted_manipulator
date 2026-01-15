@@ -31,7 +31,7 @@ Develop stage: 1. P controller 2. PD controller 3. PD+G controller
 
 
 ## P controller development plan
-### A. Implement encrypted multiplication 
+### A. Implement encrypted multiplication of vector
 Original code $\to$ program to develop
 1. Scalar encryption $\to$ vector encryption 
 2. (system to controller) Encrypted scalar 값 전송 $\to$ encrypted vector 값 전송 
