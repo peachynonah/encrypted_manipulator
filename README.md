@@ -48,10 +48,11 @@ Original code $\to$ program to develop
 **완료**
 
 A-1. encrypt ee_pos = (x,y) position of turtlebot, and p_gain = (constant, constant) and multiply encrypted data. 
+A-2. 위 데이터를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함.
 
 **Work in Progress**
 
-A-2. 위 데이터를 전송할 수 있도록 publisher / subscriber data type을 변경해야 함.
+A-3. Encrypted scalar multiplication $\to$ Encrypted vector * vector multiplication
 
 **논의사항**
 - Plaintext * EncryptedData 가 OpenFHE의 BGV Scheme에서 가능한지?
